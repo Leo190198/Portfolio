@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const targetId = this.getAttribute('href');
             const targetElement = document.querySelector(targetId);
-            
+
             if (targetElement) {
                 targetElement.scrollIntoView({
                     behavior: 'smooth',
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add fade-in class to sections and cards
     const animatedElements = document.querySelectorAll('.section-title, .about-text, .stat-card, .skill-category, .timeline-item, .project-card');
-    
+
     animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         hamburger.addEventListener('click', () => {
             const isExpanded = navLinks.style.display === 'flex';
             navLinks.style.display = isExpanded ? 'none' : 'flex';
-            
+
             if (!isExpanded) {
                 navLinks.style.flexDirection = 'column';
                 navLinks.style.position = 'absolute';
@@ -73,5 +73,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 navLinks.style.borderBottom = '1px solid var(--border-color)';
             }
         });
+    }
+
+    // Terminal Typing Effect
+    const codeText = `
+class DataEngineer(Engineer):
+    def __init__(self):
+        self.skills = ["Python", "SQL", "Cloud"]
+        self.passion = "Big Data"
+
+    def build_pipeline(self, source):
+        return transform(source)
+`;
+    const typeWriterElement = document.getElementById('typewriter');
+    let i = 0;
+
+    function typeWriter() {
+        if (i < codeText.length) {
+            typeWriterElement.innerHTML += codeText.charAt(i);
+            i++;
+            setTimeout(typeWriter, 30 + Math.random() * 50); // Random typing speed
+        }
+    }
+
+    // Start typing when hero is visible
+    if (typeWriterElement) {
+        setTimeout(typeWriter, 1000);
     }
 });
